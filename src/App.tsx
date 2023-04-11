@@ -5,8 +5,7 @@ import logo from "./assets/img/logo.svg"
 function App() {
   return (
     <div className="App">
-        <img alt={"logo"} src={logo}/>
-        <h2>Release soon...</h2>
+        <img className="logo" alt={"logo"} src={logo}/>
     </div>
   );
 }
