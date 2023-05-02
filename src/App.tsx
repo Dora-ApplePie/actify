@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import logo from "./assets/img/logo.svg"
+import Login from "./main/pages/Login/Login";
+
 
 function App() {
-  return (
-    <div className="App">
-        <img className="logo" alt={"logo"} src={logo}/>
-    </div>
-  );
+    return (
+       <Login/>
+    );
 }
 
 export default App;
