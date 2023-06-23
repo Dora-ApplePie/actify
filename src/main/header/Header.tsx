@@ -152,9 +152,9 @@ export function Header({user, tabs}: HeaderTabsProps) {
                             <UnstyledButton
                                 className={cx(classes.user, {[classes.userActive]: userMenuOpened})}
                             >
-                                <Group spacing={7}>
-                                    <Avatar src={user.image} alt={user.name} radius="xl" size={20}/>
-                                    <Text weight={500} size="sm" sx={{lineHeight: 1, color: theme.white}} mr={3}>
+                                <Group spacing={10}>
+                                    <Avatar src={user.image} alt={user.name} radius="xl" size={30}/>
+                                    <Text weight={500} size="md" sx={{lineHeight: 1, color: theme.white}} mr={3}>
                                         {user.name}
                                     </Text>
                                     <IconChevronDown size={rem(12)} stroke={1.5}/>
@@ -200,10 +200,10 @@ export function Header({user, tabs}: HeaderTabsProps) {
                     </Menu>
                 </Group>
             </Container>
-            <Container size={"xs"}>
+            <Container size={"sm"}>
                 <Tabs
-                    defaultValue="Home"
-                    variant="outline"
+                    defaultValue="My Profile"
+                    variant={"outline"}
                     classNames={{
                         root: classes.tabs,
                         tabsList: classes.tabsList,
