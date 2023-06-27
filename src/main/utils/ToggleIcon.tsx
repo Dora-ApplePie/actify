@@ -14,12 +14,12 @@ export function ToggleIcon() {
                 style={{marginLeft: "10px"}}
                 size="lg"
                 sx={(theme) => ({
-                    borderRadius: "10px",
+                    borderRadius: "9px",
                     borderColor: theme.colors.brandLime[4]
                 })}
 
             >
-                {dark ? <IconSun size="1.3rem" /> : <IconMoonStars size="1.3rem"/>}
+                {dark ? <IconSun size="1.2rem" /> : <IconMoonStars size="1.2rem"/>}
             </ActionIcon>
     );
 };
