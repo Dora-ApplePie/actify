@@ -24,8 +24,9 @@ import {
     IconSwitchHorizontal,
     IconChevronDown,
 } from '@tabler/icons-react';
-import style from './Header.module.css'
+
 import Logo from '../../assets/img/logo-inv.png';
+import {ToggleIcon} from "../utils/ToggleIcon";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -102,7 +103,15 @@ const useStyles = createStyles((theme) => ({
             ),
             borderColor: theme.fn.variant({variant: 'filled', color: theme.primaryColor}).background,
         },
+        '&[data-active]::before': {
+            backgroundColor: theme.colors.brandLime[7],
+        }
     },
+    spanTitle: {
+        fontSize: 20,
+        fontWeight: 400,
+        color: theme.colors.brandLime[5],
+    }
 }));
 
 interface HeaderTabsProps {
@@ -128,10 +137,10 @@ export function Header({user, tabs}: HeaderTabsProps) {
         <div className={classes.header}>
             <Container className={classes.mainSection} size={"xl"}>
                 <Group position="apart">
-                    <div className={style.logoTitleBox}>
+                    <Group spacing={15}>
                         <img src={Logo} alt={'logo'} width={40}/>
-                        <span className={style.logoTitle}>Actify</span>
-                    </div>
+                        <span className={classes.spanTitle}>Actify</span>
+                    </Group>
                     <Burger
                         opened={opened}
                         onClick={toggle}
@@ -139,65 +148,67 @@ export function Header({user, tabs}: HeaderTabsProps) {
                         size="sm"
                         color={theme.white}
                     />
+                    <Group spacing="xs">
+                        <Menu
+                            width={260}
+                            position="bottom-end"
+                            transitionProps={{transition: 'pop-top-right'}}
+                            onClose={() => setUserMenuOpened(false)}
+                            onOpen={() => setUserMenuOpened(true)}
+                            withinPortal
+                        >
+                            <Menu.Target>
+                                <UnstyledButton
+                                    className={cx(classes.user, {[classes.userActive]: userMenuOpened})}
+                                >
+                                    <Group spacing={10}>
+                                        <Avatar src={user.image} alt={user.name} radius="xl" size={30}/>
+                                        <Text weight={500} size="md" sx={{lineHeight: 1, color: theme.white}} mr={3}>
+                                            {user.name}
+                                        </Text>
+                                        <IconChevronDown size={rem(12)} stroke={1.5}/>
+                                    </Group>
+                                </UnstyledButton>
+                            </Menu.Target>
+                            <Menu.Dropdown>
+                                <Menu.Item
+                                    icon={<IconHeart size="0.9rem" stroke={1.5} color={theme.colors.red[6]}/>}
+                                >
+                                    Liked
+                                </Menu.Item>
+                                <Menu.Item
+                                    icon={<IconStar size="0.9rem" stroke={1.5} color={theme.colors.yellow[6]}/>}
+                                >
+                                    Saved
+                                </Menu.Item>
+                                <Menu.Item
+                                    icon={<IconMessage size="0.9rem" stroke={1.5} color={theme.colors.blue[6]}/>}
+                                >
+                                    Your comments
+                                </Menu.Item>
 
-                    <Menu
-                        width={260}
-                        position="bottom-end"
-                        transitionProps={{transition: 'pop-top-right'}}
-                        onClose={() => setUserMenuOpened(false)}
-                        onOpen={() => setUserMenuOpened(true)}
-                        withinPortal
-                    >
-                        <Menu.Target>
-                            <UnstyledButton
-                                className={cx(classes.user, {[classes.userActive]: userMenuOpened})}
-                            >
-                                <Group spacing={10}>
-                                    <Avatar src={user.image} alt={user.name} radius="xl" size={30}/>
-                                    <Text weight={500} size="md" sx={{lineHeight: 1, color: theme.white}} mr={3}>
-                                        {user.name}
-                                    </Text>
-                                    <IconChevronDown size={rem(12)} stroke={1.5}/>
-                                </Group>
-                            </UnstyledButton>
-                        </Menu.Target>
-                        <Menu.Dropdown>
-                            <Menu.Item
-                                icon={<IconHeart size="0.9rem" stroke={1.5} color={theme.colors.red[6]}/>}
-                            >
-                                Liked posts
-                            </Menu.Item>
-                            <Menu.Item
-                                icon={<IconStar size="0.9rem" stroke={1.5} color={theme.colors.yellow[6]}/>}
-                            >
-                                Saved posts
-                            </Menu.Item>
-                            <Menu.Item
-                                icon={<IconMessage size="0.9rem" stroke={1.5} color={theme.colors.blue[6]}/>}
-                            >
-                                Your comments
-                            </Menu.Item>
+                                <Menu.Label>Settings</Menu.Label>
+                                <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5}/>}>
+                                    Account settings
+                                </Menu.Item>
+                                <Menu.Item icon={<IconSwitchHorizontal size="0.9rem" stroke={1.5}/>}>
+                                    Change account
+                                </Menu.Item>
+                                <Menu.Item icon={<IconLogout size="0.9rem" stroke={1.5}/>}>Logout</Menu.Item>
 
-                            <Menu.Label>Settings</Menu.Label>
-                            <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5}/>}>
-                                Account settings
-                            </Menu.Item>
-                            <Menu.Item icon={<IconSwitchHorizontal size="0.9rem" stroke={1.5}/>}>
-                                Change account
-                            </Menu.Item>
-                            <Menu.Item icon={<IconLogout size="0.9rem" stroke={1.5}/>}>Logout</Menu.Item>
+                                <Menu.Divider/>
 
-                            <Menu.Divider/>
-
-                            <Menu.Label>Danger zone</Menu.Label>
-                            <Menu.Item icon={<IconPlayerPause size="0.9rem" stroke={1.5}/>}>
-                                Pause subscription
-                            </Menu.Item>
-                            <Menu.Item color="red" icon={<IconTrash size="0.9rem" stroke={1.5}/>}>
-                                Delete account
-                            </Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                                <Menu.Label>Danger zone</Menu.Label>
+                                <Menu.Item icon={<IconPlayerPause size="0.9rem" stroke={1.5}/>}>
+                                    Pause subscription
+                                </Menu.Item>
+                                <Menu.Item color="red" icon={<IconTrash size="0.9rem" stroke={1.5}/>}>
+                                    Delete account
+                                </Menu.Item>
+                            </Menu.Dropdown>
+                        </Menu>
+                        <ToggleIcon/>
+                    </Group>
                 </Group>
             </Container>
             <Container size={"sm"}>

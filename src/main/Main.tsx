@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <HashRouter>
             <Header tabs={["My Profile", "Projects", "Community", "Challenges", "Voting", "Find people"]}
-                    user={{"name": "Daria Golenko", "image": "https://ltdfoto.ru/images/2023/06/23/profile-photo.jpg"}}/>
+                    user={{"name": "Daria Golenko", "image": "https://i.pinimg.com/564x/bd/1a/f5/bd1af5e7fa134ed64c0e5bc45315c300.jpg"}}/>
             <Pages/>
             <Footer/>
         </HashRouter>
