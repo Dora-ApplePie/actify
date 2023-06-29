@@ -109,8 +109,8 @@ const useStyles = createStyles((theme) => ({
     },
     spanTitle: {
         fontSize: 20,
-        fontWeight: 400,
-        color: theme.colors.brandLime[5],
+        fontWeight: 450,
+        color: theme.colors.brandLime[4],
     }
 }));
 

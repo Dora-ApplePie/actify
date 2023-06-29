@@ -14,8 +14,8 @@ export function ToggleIcon() {
                 style={{marginLeft: "10px"}}
                 size="lg"
                 sx={(theme) => ({
-                    borderRadius: "9px",
-                    borderColor: theme.colors.brandLime[4]
+                    borderRadius: "7px",
+                    borderColor: theme.colors.brandDark[3]
                 })}
 
             >
